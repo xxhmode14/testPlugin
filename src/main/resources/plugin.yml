@@ -1,0 +1,9 @@
+name: Test_plugin
+version: '${project.version}'
+main: com.m7mdmrq.testplugin.test_plugin.Test_plugin
+api-version: 1.18
+authors: [ GET_MEMED_ON ]
+description: a test plugin
+
+commands:
+  test:
