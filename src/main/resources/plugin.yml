@@ -7,3 +7,6 @@ description: a test plugin
 
 commands:
   test:
+    aliases: [hello_world, testing]
+  smite:
+    aliases: [thor]

@@ -2,14 +2,17 @@ package com.m7mdmrq.testplugin.test_plugin;
 
 import com.m7mdmrq.testplugin.test_plugin.commands.HelloWorld;
 import com.m7mdmrq.testplugin.test_plugin.commands.Senders;
+import com.m7mdmrq.testplugin.test_plugin.commands.Smite;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class Test_plugin extends JavaPlugin {
 
@@ -18,7 +21,7 @@ public final class Test_plugin extends JavaPlugin {
     @Override
     public void onEnable() {
         registerCommand(new HelloWorld());
-
+        registerCommand(new Smite());
     }
 
     @Override
@@ -29,9 +32,18 @@ public final class Test_plugin extends JavaPlugin {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         commandList.forEach((cmd) -> {
-            if(!label.equals(cmd.getName()))
-                return;
+            if(!label.equals(cmd.getName())) {
+                List<String> aliases = cmd.getAliases();
+                if (aliases == null)
+                    return;
+                for (int i = 0; i <= aliases.size() - 1; i++) {
+                    if (label.equals(aliases.get(i)))
+                        break;
+                    if (i == aliases.size() - 1)
+                        return;
+                }
 
+            }
             String perms = cmd.getPerms(args);
             Senders senderLevel = cmd.senderLevel();
             if(senderLevel != Senders.BOTH && senderLevel != getSenderLevel(sender))
@@ -55,5 +67,16 @@ public final class Test_plugin extends JavaPlugin {
             return Senders.PLAYER;
         else
             return Senders.CONSOLE;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        AtomicReference<List<String>> tabCompletion = new AtomicReference<List<String>>();
+        commandList.forEach((cmd) -> {
+            if(!command.getLabel().equals(cmd.getName()) && !alias.equals(cmd.getName()))
+                return;
+            tabCompletion.set(cmd.getTabCompletion(args, this));
+        });
+        return tabCompletion.get();
     }
 }

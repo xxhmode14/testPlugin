@@ -2,25 +2,38 @@ package com.m7mdmrq.testplugin.test_plugin.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface Command {
-    int Run(String[] args, CommandSender sender, Plugin main);
+    @NotNull int Run(String[] args, CommandSender sender, Plugin main);
     Senders senderLevel();
 
-    default String usage() {
+    default @NotNull String usage() {
         return "Usage: /" + getName();
     }
-    default boolean requirePerms() {
+    default @NotNull boolean requirePerms() {
         return true;
     }
-    default String getPerms(String[] args) {
+    default @Nullable String getPerms(String[] args) {
         if(!requirePerms())
             return null;
         return getName() + ".use";
     }
-    default String getDescription() {
-        return "";
+    default @Nullable String getDescription() {
+        return null;
     };
-    String getName();
+
+    default @Nullable List<String> getTabCompletion(String[] args,Plugin main) {
+        return null;
+    }
+
+    default @Nullable List<String> getAliases() {
+        return null;
+    }
+    @NotNull String getName();
 }
 
