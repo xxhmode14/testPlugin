@@ -1,5 +1,9 @@
 package com.m7mdmrq.testplugin.test_plugin.commands;
 
+import com.m7mdmrq.testplugin.test_plugin.Test_plugin;
+import com.m7mdmrq.testplugin.test_plugin.utils.Command;
+import com.m7mdmrq.testplugin.test_plugin.utils.PluginItem;
+import com.m7mdmrq.testplugin.test_plugin.utils.Senders;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.Nullable;
@@ -10,7 +14,7 @@ import java.util.List;
 public class HelloWorld implements Command {
 
     @Override
-    public int Run(String[] args, CommandSender sender, Plugin main) {
+    public int Run(String[] args, CommandSender sender, Test_plugin main) {
         sender.sendMessage("This is a test command!");
         return 0;
     }
