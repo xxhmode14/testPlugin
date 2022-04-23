@@ -2,6 +2,7 @@ package com.m7mdmrq.testplugin.test_plugin;
 
 import com.m7mdmrq.testplugin.test_plugin.commands.GivePluginItem;
 import com.m7mdmrq.testplugin.test_plugin.commands.HelloWorld;
+import com.m7mdmrq.testplugin.test_plugin.items.AngelRing;
 import com.m7mdmrq.testplugin.test_plugin.items.TeleportBow;
 import com.m7mdmrq.testplugin.test_plugin.utils.PluginItem;
 import com.m7mdmrq.testplugin.test_plugin.utils.Senders;
@@ -11,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +33,8 @@ public final class Test_plugin extends JavaPlugin {
         registerCommand(new GivePluginItem());
 
         // registering items
-        registerItem(new TeleportBow());
+        registerItem(new TeleportBow(this));
+        registerItem(new AngelRing(this));
     }
 
     @Override
@@ -87,7 +90,7 @@ public final class Test_plugin extends JavaPlugin {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        AtomicReference<List<String>> tabCompletion = new AtomicReference<List<String>>();
+        AtomicReference<List<String>> tabCompletion = new AtomicReference<>();
         commandList.forEach((cmd) -> {
             if(!command.getLabel().equals(cmd.getName()) && !alias.equals(cmd.getName()))
                 return;

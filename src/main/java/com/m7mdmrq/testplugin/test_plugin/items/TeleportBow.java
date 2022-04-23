@@ -1,5 +1,6 @@
 package com.m7mdmrq.testplugin.test_plugin.items;
 
+import com.m7mdmrq.testplugin.test_plugin.Test_plugin;
 import com.m7mdmrq.testplugin.test_plugin.utils.PluginItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
@@ -21,9 +22,10 @@ import java.util.Map;
 
 public class TeleportBow implements PluginItem, Listener {
 
-    private ItemStack item;
-    private Map<String,Player> lastShot = new HashMap<>();
-    public TeleportBow() {
+    private final ItemStack item;
+    private final Test_plugin plugin;
+    private final Map<String,Player> lastShot = new HashMap<>();
+    public TeleportBow(Test_plugin plugin) {
         ItemStack bow = new ItemStack(Material.BOW);
         ItemMeta meta = bow.getItemMeta();
         meta.setUnbreakable(true);
@@ -32,7 +34,8 @@ public class TeleportBow implements PluginItem, Listener {
         meta.displayName(Component.text("Teleport Bow"));
         meta.setCustomModelData(1);
         bow.setItemMeta(meta);
-        item = bow;
+        this.plugin = plugin;
+        this.item = bow;
     }
 
     @Override
