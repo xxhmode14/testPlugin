@@ -21,7 +21,7 @@ public class GivePluginItem implements Command {
 
     @Override
     public int Run(String[] args, CommandSender sender, Test_plugin main) {
-        String playerToGive = null;
+        String playerToGive;
         if(args.length != 1) {
             if(args.length == 2)
                 playerToGive = args[1];
@@ -35,7 +35,6 @@ public class GivePluginItem implements Command {
         main.pluginItems.forEach((item) -> {
             if (item.getName().equals(itemName)) {
                 pluginItem.set(item);
-                return;
             }
         });
 
@@ -75,7 +74,7 @@ public class GivePluginItem implements Command {
     @Nullable
     @Override
     public List<String> getAliases() {
-        List<String> aliases = new ArrayList<String>();
+        List<String> aliases = new ArrayList<>();
         aliases.add("giveitem");
         return aliases;
     }

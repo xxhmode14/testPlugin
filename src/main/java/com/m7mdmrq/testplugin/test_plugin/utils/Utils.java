@@ -9,17 +9,13 @@ import java.util.List;
 public class Utils {
     public static List<String> getOnlinePlayerNames(Plugin main) {
         List<String> players = new ArrayList<>();
-        main.getServer().getOnlinePlayers().forEach((plr) -> {
-            players.add(plr.getName());
-        });
+        main.getServer().getOnlinePlayers().forEach((plr) -> players.add(plr.getName()));
         return players;
     }
 
     public static List<String> getPluginItems(Test_plugin main) {
         List<String> items = new ArrayList<>();
-        main.pluginItems.forEach((item) -> {
-            items.add(item.getName());
-        });
+        main.pluginItems.forEach((item) -> items.add(item.getName()));
         return items;
     }
 }

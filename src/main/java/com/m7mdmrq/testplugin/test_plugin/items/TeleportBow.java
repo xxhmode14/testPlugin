@@ -21,8 +21,8 @@ import java.util.Map;
 
 public class TeleportBow implements PluginItem, Listener {
 
-    private ItemStack item;
-    private Map<String,Player> lastShot = new HashMap<>();
+    private final ItemStack item;
+    private final Map<String,Player> lastShot = new HashMap<>();
     public TeleportBow() {
         ItemStack bow = new ItemStack(Material.BOW);
         ItemMeta meta = bow.getItemMeta();

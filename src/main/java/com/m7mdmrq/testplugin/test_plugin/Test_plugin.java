@@ -87,7 +87,7 @@ public final class Test_plugin extends JavaPlugin {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        AtomicReference<List<String>> tabCompletion = new AtomicReference<List<String>>();
+        AtomicReference<List<String>> tabCompletion = new AtomicReference<>();
         commandList.forEach((cmd) -> {
             if(!command.getLabel().equals(cmd.getName()) && !alias.equals(cmd.getName()))
                 return;
