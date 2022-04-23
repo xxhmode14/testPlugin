@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,17 +23,19 @@ public final class Test_plugin extends JavaPlugin {
 
     public List<PluginItem> pluginItems = new ArrayList<>();
     private final List<com.m7mdmrq.testplugin.test_plugin.utils.Command> commandList = new ArrayList<>();
-
     @Override
     public void onEnable() {
-        // registering commands
+        // Registering commands
         registerCommand(new HelloWorld());
         registerCommand(new Smite());
         registerCommand(new GivePluginItem());
 
-        // registering items
+        // Registering items
         registerItem(new TeleportBow(this));
         registerItem(new AngelRing(this));
+
+        // Register events
+
     }
 
     @Override
@@ -86,6 +87,9 @@ public final class Test_plugin extends JavaPlugin {
         if(item instanceof Listener)
             this.getServer().getPluginManager().registerEvents((Listener) item,this);
         pluginItems.add(item);
+    }
+    private void registerEvent(Listener event) {
+        this.getServer().getPluginManager().registerEvents(event,this);
     }
 
     @Override
