@@ -2,9 +2,10 @@ package com.m7mdmrq.testplugin.test_plugin.commands;
 
 import com.m7mdmrq.testplugin.test_plugin.Test_plugin;
 import com.m7mdmrq.testplugin.test_plugin.utils.Command;
+import com.m7mdmrq.testplugin.test_plugin.utils.PluginItem;
 import com.m7mdmrq.testplugin.test_plugin.utils.Senders;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class HelloWorld implements Command {
     }
 
     @Override
-    public @NotNull String getName() {
+    public String getName() {
         return "test";
     }
 

@@ -8,7 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -41,12 +41,12 @@ public class Smite implements Command {
     }
 
     @Override
-    public @NotNull String usage() {
+    public String usage() {
         return "Usage: /smite <Player>";
     }
 
     @Override
-    public @NotNull String getName() {
+    public String getName() {
         return "smite";
     }
 
@@ -60,7 +60,7 @@ public class Smite implements Command {
     @Nullable
     @Override
     public List<String> getAliases() {
-        List<String> aliases = new ArrayList<>();
+        List<String> aliases = new ArrayList<String>();
         aliases.add("thor");
         return aliases;
     }
