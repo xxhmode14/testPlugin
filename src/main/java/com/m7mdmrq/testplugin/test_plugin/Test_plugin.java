@@ -38,9 +38,9 @@ public final class Test_plugin extends JavaPlugin {
         registerItem(new TeleportBow(this));
         registerItem(new AngelRing(this));
         registerItem(new EnderString(this));
-        // Register events
 
-        registerEvent(new NoMissUpEvent(this));
+        // Register events
+        registerEvent(new NoMissUpEvent());
     }
 
     @Override

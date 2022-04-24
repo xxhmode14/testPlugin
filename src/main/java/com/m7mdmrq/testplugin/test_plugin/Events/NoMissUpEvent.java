@@ -6,16 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public class NoMissUpEvent implements Listener {
-
-    private final Test_plugin plugin;
-
-    public NoMissUpEvent(Test_plugin plugin) {
-        this.plugin = plugin;
-    }
-
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if(event.getItemInHand().getItemMeta().getCustomModelData() > 0)
+        if(event.getItemInHand().getItemMeta().hasCustomModelData())
             event.setCancelled(true);
     }
 }
