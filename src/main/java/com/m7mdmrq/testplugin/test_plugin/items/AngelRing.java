@@ -37,6 +37,11 @@ public class AngelRing extends BukkitRunnable implements PluginItem {
     }
 
     @Override
+    public Boolean craftable() {
+        return false;
+    }
+
+    @Override
     public void run() {
         this.plugin.getServer().getOnlinePlayers().forEach((plr) -> {
             if(plr.getGameMode() != GameMode.SURVIVAL)

@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.m7mdmrq.testplugin.test_plugin.utils.Utils.getOnlinePlayerNames;
-import static com.m7mdmrq.testplugin.test_plugin.utils.Utils.getPluginItems;
+import static com.m7mdmrq.testplugin.test_plugin.utils.Utils.*;
 
 public class GivePluginItem implements Command {
 
@@ -31,20 +30,14 @@ public class GivePluginItem implements Command {
             playerToGive = sender.getName();
         }
         String itemName = args[0];
-        AtomicReference<PluginItem> pluginItem = new AtomicReference<>();
-        main.pluginItems.forEach((item) -> {
-            if (item.getName().equals(itemName)) {
-                pluginItem.set(item);
-                return;
-            }
-        });
+        PluginItem pluginItem = getPluginItemByName(main,itemName);
 
-        if (pluginItem.get() == null)
+        if (pluginItem == null)
             return 1;
         Player plr = main.getServer().getPlayer(playerToGive);
         if(plr == null)
             return 1;
-        pluginItem.get().give(plr);
+        pluginItem.give(plr);
         return 0;
     }
 

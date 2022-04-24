@@ -1,8 +1,11 @@
 package com.m7mdmrq.testplugin.test_plugin;
 
+import com.m7mdmrq.testplugin.test_plugin.Events.NoMissUpEvent;
 import com.m7mdmrq.testplugin.test_plugin.commands.GivePluginItem;
 import com.m7mdmrq.testplugin.test_plugin.commands.HelloWorld;
+import com.m7mdmrq.testplugin.test_plugin.commands.Recipies;
 import com.m7mdmrq.testplugin.test_plugin.items.AngelRing;
+import com.m7mdmrq.testplugin.test_plugin.items.EnderString;
 import com.m7mdmrq.testplugin.test_plugin.items.TeleportBow;
 import com.m7mdmrq.testplugin.test_plugin.utils.PluginItem;
 import com.m7mdmrq.testplugin.test_plugin.utils.Senders;
@@ -29,13 +32,15 @@ public final class Test_plugin extends JavaPlugin {
         registerCommand(new HelloWorld());
         registerCommand(new Smite());
         registerCommand(new GivePluginItem());
+        registerCommand(new Recipies());
 
         // Registering items
         registerItem(new TeleportBow(this));
         registerItem(new AngelRing(this));
-
+        registerItem(new EnderString(this));
         // Register events
 
+        registerEvent(new NoMissUpEvent(this));
     }
 
     @Override
