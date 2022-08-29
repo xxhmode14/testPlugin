@@ -22,9 +22,12 @@ import static com.m7mdmrq.testplugin.test_plugin.utils.Utils.*;
 
 public class Recipies implements Command, Listener {
     private final Map<PluginItem,Inventory> recipiesInventory = new HashMap<>();
+    private boolean init = false;
     @Override
     public int Run(String[] args, CommandSender sender, Test_plugin main) {
-        initGUI(main);
+        if (!init)
+            initGUI(main);
+
         if(args.length != 1)
             return 1;
         String itemName = args[0];
@@ -91,6 +94,7 @@ public class Recipies implements Command, Listener {
             itemInv.setItem(34,recipe.getResult());
             recipiesInventory.put(item,itemInv);
         });
+        init = true;
     }
 
     @EventHandler
